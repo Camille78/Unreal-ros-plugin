@@ -34,3 +34,5 @@ source code from GitHub (4.9 or higher) is required for this.
 
 After compiling the plug-in, you have to **enable it** in Unreal Editor's plug-in
 browser.
+
+Coming soon : Example of Unreal Project and ROS Project using this plugin to exchange messages
