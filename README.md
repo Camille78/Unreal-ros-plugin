@@ -35,12 +35,26 @@ source code from GitHub (4.9 or higher) is required for this.
 After compiling the plug-in, you have to **enable it** in Unreal Editor's plug-in
 browser.
 
+Perform the following steps to test the components:
+- Modify the ROSSerialClientComponent.cpp file and its header to create the advertisers and the publishers that you need
+- Compile
+- Drag a Sphere from the Basic Shapes tab into your level
+- Select the actor and click the Add Component button in the Details panel
+- Add the ROSSerialCliantcomponent
+- Initialize Rosserial with the IP adress of your RosMaster in your actor blueprint thanks to the function **InitROS**
+- You can use the example functions **PublishTransformMsg**, **PublishCartNavStateMsg**, **OnNewYawCommand**, **OnNewVelocityCommand** or create your own functions in your actor's blueprint.
+
+
 ## Example
 
-You can use the repositories [SimpleROSProjectForUnreal](https://github.com/Camille78/SimpleROSProjectForUnreal) and [SimpleUnrealProjectForROS](https://github.com/Camille78/SimpleUnrealProjectForROS) which are an Unreal Project and a ROS Project using this plugin to exchange messages. This will help you to understand how the plugin can be used.
+If you need more help, you can take a look at the repositories [SimpleROSProjectForUnreal](https://github.com/Camille78/SimpleROSProjectForUnreal) and [SimpleUnrealProjectForROS](https://github.com/Camille78/SimpleUnrealProjectForROS) which are an Unreal Project and a ROS Project using this plugin to exchange messages. This will help you to understand how the plugin can be used.
 - Download the two repositories
 - Open the Unreal Project in Unreal Engine 
-- Launch the ROS node : roslaunch unrealROS UnrealSimu.launch
+- Build and launch the ROS node : 
+
+		catkin build
+		roslaunch unrealROS UnrealSimu.launch
+	
 - Set the IP adress of your ROSMaster in the RosCube Blueprint
 - Play the scene in Unreal
 - The cube should move thanks to speed and yaw commands sent from the ROS node "thrusterControllerNode" (Note don't panic if the cube movement is awkward, the PID controller in the trhusterControllerNode is not correctly set)
