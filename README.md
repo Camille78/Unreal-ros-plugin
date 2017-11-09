@@ -50,13 +50,13 @@ You can use the repositories [SimpleROSProjectForUnreal](https://github.com/Cami
 
 
 ## Known Errors :
-Error	C2059	syntax error: 'constant'	plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h	22	
+*Error	C2059	syntax error: 'constant'	plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h	22*
 
 Some macros have been declared in Rosserial and in Unreal with the same name.
 
 One way to correct this :
 
-In plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h    line 22
+In plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h    *line 22*
 
 Replace
 
@@ -67,7 +67,7 @@ by
 	enum { ROS_ERROR = 3 };
 
 
-Then in \plugins\unreal-ros-plugin\thirdparty\ros_lib\ros\node_handle.h	line 478
+Then in \plugins\unreal-ros-plugin\thirdparty\ros_lib\ros\node_handle.h	*line 478*
 
 Replace
 	
