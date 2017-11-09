@@ -42,7 +42,7 @@ You can use the repositories SimpleROSProjectForUnreal and SimpleUnrealProjectFo
 - Open the Unreal Project in Unreal Engine 
 - Launch the ROS node : roslaunch unrealROS UnrealSimu.launch
 - Play the scene in Unreal
-- The cube should move thanks to speed and yaw commands sent from the ROS node "thrusterControllerNode"
+- The cube should move thanks to speed and yaw commands sent from the ROS node "thrusterControllerNode" (Note don't panic if the cube movement is awkward, the PID controller in the trhusterControllerNode is not correctly set)
 
 - Everything you should pay attention for is located in the ROScube blueprint, in the files ROSSerialClientComponent.cpp and its header. You can also find a quick procedure to create your own ROS messages in the file "AddCustomMsg" located in the Unreal project. 
 
