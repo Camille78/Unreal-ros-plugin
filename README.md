@@ -35,7 +35,7 @@ source code from GitHub (4.9 or higher) is required for this.
 After compiling the plug-in, you have to **enable it** in Unreal Editor's plug-in
 browser.
 
-## Example
+## Example
 
 You can use the repositories SimpleROSProjectForUnreal and SimpleUnrealProjectForROS which are an Unreal Project and a ROS Project using this plugin to exchange messages. This will help you to understand how the plugin can be used.
 - Download the two repositories
@@ -48,7 +48,7 @@ You can use the repositories SimpleROSProjectForUnreal and SimpleUnrealProjectFo
 
 
 
-## Known errors :
+## Known Errors :
 Error	C2059	syntax error: 'constant'	plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h	22	
 
 Some macros have been declared in Rosserial and in Unreal with the same name 
