@@ -58,15 +58,25 @@ One way to correct this :
 
 In plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h    line 22
 
-	replace    enum { ERROR = 3 };
-	by	   enum { ROS_ERROR = 3 };
+Replace
+
+	enum { ERROR = 3 };
+	
+by
+
+	enum { ROS_ERROR = 3 };
 
 
 Then in \plugins\unreal-ros-plugin\thirdparty\ros_lib\ros\node_handle.h	line 478
 
-	replace   void logerror(const char*msg){
+Replace
+	
+	void logerror(const char*msg){
         	      log(rosserial_msgs::Log::ERROR, msg);
-      		   }
-    	by 	  void logerror(const char*msg){
+	}
+
+by
+
+	void logerror(const char*msg){
         	      log(rosserial_msgs::Log::ROS_ERROR, msg);
-      		   }
+      	}
