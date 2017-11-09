@@ -37,10 +37,11 @@ browser.
 
 ## Example
 
-You can use the repositories SimpleROSProjectForUnreal and SimpleUnrealProjectForROS which are an Unreal Project and a ROS Project using this plugin to exchange messages. This will help you to understand how the plugin can be used.
+You can use the repositories [SimpleROSProjectForUnreal](https://github.com/Camille78/SimpleROSProjectForUnreal) and [SimpleUnrealProjectForROS](https://github.com/Camille78/SimpleUnrealProjectForROS) which are an Unreal Project and a ROS Project using this plugin to exchange messages. This will help you to understand how the plugin can be used.
 - Download the two repositories
 - Open the Unreal Project in Unreal Engine 
 - Launch the ROS node : roslaunch unrealROS UnrealSimu.launch
+- Set the IP adress of your ROSMaster in the RosCube Blueprint
 - Play the scene in Unreal
 - The cube should move thanks to speed and yaw commands sent from the ROS node "thrusterControllerNode" (Note don't panic if the cube movement is awkward, the PID controller in the trhusterControllerNode is not correctly set)
 
@@ -51,17 +52,21 @@ You can use the repositories SimpleROSProjectForUnreal and SimpleUnrealProjectFo
 ## Known Errors :
 Error	C2059	syntax error: 'constant'	plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h	22	
 
-Some macros have been declared in Rosserial and in Unreal with the same name 
+Some macros have been declared in Rosserial and in Unreal with the same name.
+
 One way to correct this :
+
 In plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h    line 22
+
 	replace    enum { ERROR = 3 };
 	by	   enum { ROS_ERROR = 3 };
 
 
 Then in \plugins\unreal-ros-plugin\thirdparty\ros_lib\ros\node_handle.h	line 478
-    replace   void logerror(const char*msg){
-        	log(rosserial_msgs::Log::ERROR, msg);
-      		}
-    by 	      void logerror(const char*msg){
-        	log(rosserial_msgs::Log::ROS_ERROR, msg);
-      		}
+
+	replace   void logerror(const char*msg){
+        	      log(rosserial_msgs::Log::ERROR, msg);
+      		   }
+    	by 	  void logerror(const char*msg){
+        	      log(rosserial_msgs::Log::ROS_ERROR, msg);
+      		   }
