@@ -40,7 +40,7 @@ Perform the following steps to test the components:
 - Compile
 - Drag a Sphere from the Basic Shapes tab into your level
 - Select the actor and click the Add Component button in the Details panel
-- Add the ROSSerialCliantcomponent
+- Add the ROSSerialClientcomponent
 - Initialize Rosserial with the IP adress of your RosMaster in your actor blueprint thanks to the function **InitROS**
 - You can use the example functions **PublishTransformMsg**, **PublishCartNavStateMsg**, **OnNewYawCommand**, **OnNewVelocityCommand** or create your own functions in your actor's blueprint.
 
