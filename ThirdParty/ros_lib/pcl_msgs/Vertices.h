@@ -13,8 +13,9 @@ namespace pcl_msgs
   {
     public:
       uint32_t vertices_length;
-      uint32_t st_vertices;
-      uint32_t * vertices;
+      typedef uint32_t _vertices_type;
+      _vertices_type st_vertices;
+      _vertices_type * vertices;
 
     Vertices():
       vertices_length(0), vertices(NULL)

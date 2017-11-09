@@ -13,7 +13,8 @@ static const char RELOADCONTROLLERLIBRARIES[] = "controller_manager_msgs/ReloadC
   class ReloadControllerLibrariesRequest : public ros::Msg
   {
     public:
-      bool force_kill;
+      typedef bool _force_kill_type;
+      _force_kill_type force_kill;
 
     ReloadControllerLibrariesRequest():
       force_kill(0)
@@ -55,7 +56,8 @@ static const char RELOADCONTROLLERLIBRARIES[] = "controller_manager_msgs/ReloadC
   class ReloadControllerLibrariesResponse : public ros::Msg
   {
     public:
-      bool ok;
+      typedef bool _ok_type;
+      _ok_type ok;
 
     ReloadControllerLibrariesResponse():
       ok(0)

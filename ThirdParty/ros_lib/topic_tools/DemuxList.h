@@ -39,8 +39,9 @@ static const char DEMUXLIST[] = "topic_tools/DemuxList";
   {
     public:
       uint32_t topics_length;
-      char* st_topics;
-      char* * topics;
+      typedef char* _topics_type;
+      _topics_type st_topics;
+      _topics_type * topics;
 
     DemuxListResponse():
       topics_length(0), topics(NULL)
@@ -57,7 +58,7 @@ static const char DEMUXLIST[] = "topic_tools/DemuxList";
       offset += sizeof(this->topics_length);
       for( uint32_t i = 0; i < topics_length; i++){
       uint32_t length_topicsi = strlen(this->topics[i]);
-      memcpy(outbuffer + offset, &length_topicsi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_topicsi);
       offset += 4;
       memcpy(outbuffer + offset, this->topics[i], length_topicsi);
       offset += length_topicsi;
@@ -78,7 +79,7 @@ static const char DEMUXLIST[] = "topic_tools/DemuxList";
       topics_length = topics_lengthT;
       for( uint32_t i = 0; i < topics_length; i++){
       uint32_t length_st_topics;
-      memcpy(&length_st_topics, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_topics, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_topics; ++k){
           inbuffer[k-1]=inbuffer[k];

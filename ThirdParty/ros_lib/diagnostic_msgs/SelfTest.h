@@ -39,11 +39,14 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
   class SelfTestResponse : public ros::Msg
   {
     public:
-      const char* id;
-      int8_t passed;
+      typedef const char* _id_type;
+      _id_type id;
+      typedef int8_t _passed_type;
+      _passed_type passed;
       uint32_t status_length;
-      diagnostic_msgs::DiagnosticStatus st_status;
-      diagnostic_msgs::DiagnosticStatus * status;
+      typedef diagnostic_msgs::DiagnosticStatus _status_type;
+      _status_type st_status;
+      _status_type * status;
 
     SelfTestResponse():
       id(""),
@@ -56,7 +59,7 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
     {
       int offset = 0;
       uint32_t length_id = strlen(this->id);
-      memcpy(outbuffer + offset, &length_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_id);
       offset += 4;
       memcpy(outbuffer + offset, this->id, length_id);
       offset += length_id;
@@ -82,7 +85,7 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
     {
       int offset = 0;
       uint32_t length_id;
-      memcpy(&length_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_id; ++k){
           inbuffer[k-1]=inbuffer[k];

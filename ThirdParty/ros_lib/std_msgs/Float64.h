@@ -12,7 +12,8 @@ namespace std_msgs
   class Float64 : public ros::Msg
   {
     public:
-      double data;
+      typedef double _data_type;
+      _data_type data;
 
     Float64():
       data(0)

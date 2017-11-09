@@ -475,7 +475,7 @@ namespace ros {
         log(rosserial_msgs::Log::WARN, msg);
       }
       void logerror(const char*msg){
-        log(rosserial_msgs::Log::ROS_ERROR, msg);
+        log(rosserial_msgs::Log::ERROR, msg);
       }
       void logfatal(const char*msg){
         log(rosserial_msgs::Log::FATAL, msg);

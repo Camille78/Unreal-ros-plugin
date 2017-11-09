@@ -12,10 +12,12 @@ namespace controller_manager_msgs
   class HardwareInterfaceResources : public ros::Msg
   {
     public:
-      const char* hardware_interface;
+      typedef const char* _hardware_interface_type;
+      _hardware_interface_type hardware_interface;
       uint32_t resources_length;
-      char* st_resources;
-      char* * resources;
+      typedef char* _resources_type;
+      _resources_type st_resources;
+      _resources_type * resources;
 
     HardwareInterfaceResources():
       hardware_interface(""),
@@ -27,7 +29,7 @@ namespace controller_manager_msgs
     {
       int offset = 0;
       uint32_t length_hardware_interface = strlen(this->hardware_interface);
-      memcpy(outbuffer + offset, &length_hardware_interface, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_hardware_interface);
       offset += 4;
       memcpy(outbuffer + offset, this->hardware_interface, length_hardware_interface);
       offset += length_hardware_interface;
@@ -38,7 +40,7 @@ namespace controller_manager_msgs
       offset += sizeof(this->resources_length);
       for( uint32_t i = 0; i < resources_length; i++){
       uint32_t length_resourcesi = strlen(this->resources[i]);
-      memcpy(outbuffer + offset, &length_resourcesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_resourcesi);
       offset += 4;
       memcpy(outbuffer + offset, this->resources[i], length_resourcesi);
       offset += length_resourcesi;
@@ -50,7 +52,7 @@ namespace controller_manager_msgs
     {
       int offset = 0;
       uint32_t length_hardware_interface;
-      memcpy(&length_hardware_interface, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_hardware_interface, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_hardware_interface; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -68,7 +70,7 @@ namespace controller_manager_msgs
       resources_length = resources_lengthT;
       for( uint32_t i = 0; i < resources_length; i++){
       uint32_t length_st_resources;
-      memcpy(&length_st_resources, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_resources, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_resources; ++k){
           inbuffer[k-1]=inbuffer[k];

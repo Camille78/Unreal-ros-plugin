@@ -13,13 +13,18 @@ namespace dynamic_reconfigure
   class Group : public ros::Msg
   {
     public:
-      const char* name;
-      const char* type;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef const char* _type_type;
+      _type_type type;
       uint32_t parameters_length;
-      dynamic_reconfigure::ParamDescription st_parameters;
-      dynamic_reconfigure::ParamDescription * parameters;
-      int32_t parent;
-      int32_t id;
+      typedef dynamic_reconfigure::ParamDescription _parameters_type;
+      _parameters_type st_parameters;
+      _parameters_type * parameters;
+      typedef int32_t _parent_type;
+      _parent_type parent;
+      typedef int32_t _id_type;
+      _id_type id;
 
     Group():
       name(""),
@@ -34,12 +39,12 @@ namespace dynamic_reconfigure
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
       uint32_t length_type = strlen(this->type);
-      memcpy(outbuffer + offset, &length_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_type);
       offset += 4;
       memcpy(outbuffer + offset, this->type, length_type);
       offset += length_type;
@@ -78,7 +83,7 @@ namespace dynamic_reconfigure
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -87,7 +92,7 @@ namespace dynamic_reconfigure
       this->name = (char *)(inbuffer + offset-1);
       offset += length_name;
       uint32_t length_type;
-      memcpy(&length_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_type; ++k){
           inbuffer[k-1]=inbuffer[k];

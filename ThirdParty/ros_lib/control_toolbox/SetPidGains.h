@@ -13,11 +13,16 @@ static const char SETPIDGAINS[] = "control_toolbox/SetPidGains";
   class SetPidGainsRequest : public ros::Msg
   {
     public:
-      double p;
-      double i;
-      double d;
-      double i_clamp;
-      bool antiwindup;
+      typedef double _p_type;
+      _p_type p;
+      typedef double _i_type;
+      _i_type i;
+      typedef double _d_type;
+      _d_type d;
+      typedef double _i_clamp_type;
+      _i_clamp_type i_clamp;
+      typedef bool _antiwindup_type;
+      _antiwindup_type antiwindup;
 
     SetPidGainsRequest():
       p(0),

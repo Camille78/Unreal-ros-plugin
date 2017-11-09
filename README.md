@@ -1,4 +1,4 @@
-# Unreal-ROS-PLugin
+# Unreal-ROS-Plugin
 
 Unreal Engine 4 plug-in that allows to send and receive standard messages between ROS nodes and an Unreal Engine Blueprint
 
@@ -35,4 +35,33 @@ source code from GitHub (4.9 or higher) is required for this.
 After compiling the plug-in, you have to **enable it** in Unreal Editor's plug-in
 browser.
 
-Coming soon : Example of Unreal Project and ROS Project using this plugin to exchange messages
+## Example
+
+You can use the repositories SimpleROSProjectForUnreal and SimpleUnrealProjectForROS which are an Unreal Project and a ROS Project using this plugin to exchange messages. This will help you to understand how the plugin can be used.
+- Download the two repositories
+- Open the Unreal Project in Unreal Engine 
+- Launch the ROS node : roslaunch unrealROS UnrealSimu.launch
+- Play the scene in Unreal
+- The cube should move thanks to speed and yaw commands sent from the ROS node "thrusterControllerNode"
+
+- Everything you should pay attention for is located in the ROScube blueprint, in the files ROSSerialClientComponent.cpp and its header. You can also find a quick procedure to create your own ROS messages in the file "AddCustomMsg" located in the Unreal project. 
+
+
+
+## Known errors :
+Error	C2059	syntax error: 'constant'	plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h	22	
+
+Some macros have been declared in Rosserial and in Unreal with the same name 
+One way to correct this :
+In plugins\unreal-ros-plugin\thirdparty\ros_lib\rosserial_msgs\Log.h    line 22
+	replace    enum { ERROR = 3 };
+	by	   enum { ROS_ERROR = 3 };
+
+
+Then in \plugins\unreal-ros-plugin\thirdparty\ros_lib\ros\node_handle.h	line 478
+    replace   void logerror(const char*msg){
+        	log(rosserial_msgs::Log::ERROR, msg);
+      		}
+    by 	      void logerror(const char*msg){
+        	log(rosserial_msgs::Log::ROS_ERROR, msg);
+      		}

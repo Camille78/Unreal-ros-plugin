@@ -15,8 +15,10 @@ static const char ASSEMBLESCANS[] = "laser_assembler/AssembleScans";
   class AssembleScansRequest : public ros::Msg
   {
     public:
-      ros::Time begin;
-      ros::Time end;
+      typedef ros::Time _begin_type;
+      _begin_type begin;
+      typedef ros::Time _end_type;
+      _end_type end;
 
     AssembleScansRequest():
       begin(),
@@ -84,7 +86,8 @@ static const char ASSEMBLESCANS[] = "laser_assembler/AssembleScans";
   class AssembleScansResponse : public ros::Msg
   {
     public:
-      sensor_msgs::PointCloud cloud;
+      typedef sensor_msgs::PointCloud _cloud_type;
+      _cloud_type cloud;
 
     AssembleScansResponse():
       cloud()

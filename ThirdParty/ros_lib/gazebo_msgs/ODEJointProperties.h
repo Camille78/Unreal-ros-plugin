@@ -13,35 +13,45 @@ namespace gazebo_msgs
   {
     public:
       uint32_t damping_length;
-      double st_damping;
-      double * damping;
+      typedef double _damping_type;
+      _damping_type st_damping;
+      _damping_type * damping;
       uint32_t hiStop_length;
-      double st_hiStop;
-      double * hiStop;
+      typedef double _hiStop_type;
+      _hiStop_type st_hiStop;
+      _hiStop_type * hiStop;
       uint32_t loStop_length;
-      double st_loStop;
-      double * loStop;
+      typedef double _loStop_type;
+      _loStop_type st_loStop;
+      _loStop_type * loStop;
       uint32_t erp_length;
-      double st_erp;
-      double * erp;
+      typedef double _erp_type;
+      _erp_type st_erp;
+      _erp_type * erp;
       uint32_t cfm_length;
-      double st_cfm;
-      double * cfm;
+      typedef double _cfm_type;
+      _cfm_type st_cfm;
+      _cfm_type * cfm;
       uint32_t stop_erp_length;
-      double st_stop_erp;
-      double * stop_erp;
+      typedef double _stop_erp_type;
+      _stop_erp_type st_stop_erp;
+      _stop_erp_type * stop_erp;
       uint32_t stop_cfm_length;
-      double st_stop_cfm;
-      double * stop_cfm;
+      typedef double _stop_cfm_type;
+      _stop_cfm_type st_stop_cfm;
+      _stop_cfm_type * stop_cfm;
       uint32_t fudge_factor_length;
-      double st_fudge_factor;
-      double * fudge_factor;
+      typedef double _fudge_factor_type;
+      _fudge_factor_type st_fudge_factor;
+      _fudge_factor_type * fudge_factor;
       uint32_t fmax_length;
-      double st_fmax;
-      double * fmax;
+      typedef double _fmax_type;
+      _fmax_type st_fmax;
+      _fmax_type * fmax;
       uint32_t vel_length;
-      double st_vel;
-      double * vel;
+      typedef double _vel_type;
+      _vel_type st_vel;
+      _vel_type * vel;
 
     ODEJointProperties():
       damping_length(0), damping(NULL),

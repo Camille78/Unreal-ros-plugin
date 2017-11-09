@@ -13,10 +13,12 @@ namespace pcl_msgs
   class ModelCoefficients : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t values_length;
-      float st_values;
-      float * values;
+      typedef float _values_type;
+      _values_type st_values;
+      _values_type * values;
 
     ModelCoefficients():
       header(),

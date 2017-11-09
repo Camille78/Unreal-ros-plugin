@@ -15,11 +15,14 @@ namespace pcl_msgs
   class PolygonMesh : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      sensor_msgs::PointCloud2 cloud;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef sensor_msgs::PointCloud2 _cloud_type;
+      _cloud_type cloud;
       uint32_t polygons_length;
-      pcl_msgs::Vertices st_polygons;
-      pcl_msgs::Vertices * polygons;
+      typedef pcl_msgs::Vertices _polygons_type;
+      _polygons_type st_polygons;
+      _polygons_type * polygons;
 
     PolygonMesh():
       header(),

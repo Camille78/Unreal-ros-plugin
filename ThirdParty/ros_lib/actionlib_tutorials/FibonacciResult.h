@@ -13,8 +13,9 @@ namespace actionlib_tutorials
   {
     public:
       uint32_t sequence_length;
-      int32_t st_sequence;
-      int32_t * sequence;
+      typedef int32_t _sequence_type;
+      _sequence_type st_sequence;
+      _sequence_type * sequence;
 
     FibonacciResult():
       sequence_length(0), sequence(NULL)

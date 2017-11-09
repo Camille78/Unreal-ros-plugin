@@ -14,18 +14,23 @@ namespace trajectory_msgs
   {
     public:
       uint32_t positions_length;
-      double st_positions;
-      double * positions;
+      typedef double _positions_type;
+      _positions_type st_positions;
+      _positions_type * positions;
       uint32_t velocities_length;
-      double st_velocities;
-      double * velocities;
+      typedef double _velocities_type;
+      _velocities_type st_velocities;
+      _velocities_type * velocities;
       uint32_t accelerations_length;
-      double st_accelerations;
-      double * accelerations;
+      typedef double _accelerations_type;
+      _accelerations_type st_accelerations;
+      _accelerations_type * accelerations;
       uint32_t effort_length;
-      double st_effort;
-      double * effort;
-      ros::Duration time_from_start;
+      typedef double _effort_type;
+      _effort_type st_effort;
+      _effort_type * effort;
+      typedef ros::Duration _time_from_start_type;
+      _time_from_start_type time_from_start;
 
     JointTrajectoryPoint():
       positions_length(0), positions(NULL),

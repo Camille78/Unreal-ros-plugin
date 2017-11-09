@@ -1,0 +1,18 @@
+## How too create custom messages ?
+
+The plugin includes all standard ROS msgs.
+However if you want to use custom messages, rosserial_client package includes a tool for generating the required header files from message definition files.
+
+Please perform the following steps.
+
+To add new messages to the library you have to delete (if already created) the whole ros_lib folder in your ros project workspace and generate all from scratch. 
+
+Remove the ros_lib folder : rm -r ~/yourRosProject/workspace/ros_lib
+Generate the folder : rosrun rosserial_windows make_libraries.py ~/yourRosProject/workspace
+
+
+Then copy/paste the ros_lib folder into the plugin ~/Unreal-ros-plugin/ThirdParty/ 
+
+
+
+

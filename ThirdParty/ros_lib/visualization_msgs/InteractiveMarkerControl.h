@@ -14,16 +14,24 @@ namespace visualization_msgs
   class InteractiveMarkerControl : public ros::Msg
   {
     public:
-      const char* name;
-      geometry_msgs::Quaternion orientation;
-      uint8_t orientation_mode;
-      uint8_t interaction_mode;
-      bool always_visible;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef geometry_msgs::Quaternion _orientation_type;
+      _orientation_type orientation;
+      typedef uint8_t _orientation_mode_type;
+      _orientation_mode_type orientation_mode;
+      typedef uint8_t _interaction_mode_type;
+      _interaction_mode_type interaction_mode;
+      typedef bool _always_visible_type;
+      _always_visible_type always_visible;
       uint32_t markers_length;
-      visualization_msgs::Marker st_markers;
-      visualization_msgs::Marker * markers;
-      bool independent_marker_orientation;
-      const char* description;
+      typedef visualization_msgs::Marker _markers_type;
+      _markers_type st_markers;
+      _markers_type * markers;
+      typedef bool _independent_marker_orientation_type;
+      _independent_marker_orientation_type independent_marker_orientation;
+      typedef const char* _description_type;
+      _description_type description;
       enum { INHERIT =  0 };
       enum { FIXED =  1 };
       enum { VIEW_FACING =  2 };
@@ -54,7 +62,7 @@ namespace visualization_msgs
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -86,7 +94,7 @@ namespace visualization_msgs
       *(outbuffer + offset + 0) = (u_independent_marker_orientation.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->independent_marker_orientation);
       uint32_t length_description = strlen(this->description);
-      memcpy(outbuffer + offset, &length_description, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_description);
       offset += 4;
       memcpy(outbuffer + offset, this->description, length_description);
       offset += length_description;
@@ -97,7 +105,7 @@ namespace visualization_msgs
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -139,7 +147,7 @@ namespace visualization_msgs
       this->independent_marker_orientation = u_independent_marker_orientation.real;
       offset += sizeof(this->independent_marker_orientation);
       uint32_t length_description;
-      memcpy(&length_description, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_description, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_description; ++k){
           inbuffer[k-1]=inbuffer[k];

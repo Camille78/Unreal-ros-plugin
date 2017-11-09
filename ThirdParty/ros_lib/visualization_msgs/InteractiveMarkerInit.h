@@ -13,11 +13,14 @@ namespace visualization_msgs
   class InteractiveMarkerInit : public ros::Msg
   {
     public:
-      const char* server_id;
-      uint64_t seq_num;
+      typedef const char* _server_id_type;
+      _server_id_type server_id;
+      typedef uint64_t _seq_num_type;
+      _seq_num_type seq_num;
       uint32_t markers_length;
-      visualization_msgs::InteractiveMarker st_markers;
-      visualization_msgs::InteractiveMarker * markers;
+      typedef visualization_msgs::InteractiveMarker _markers_type;
+      _markers_type st_markers;
+      _markers_type * markers;
 
     InteractiveMarkerInit():
       server_id(""),
@@ -30,7 +33,7 @@ namespace visualization_msgs
     {
       int offset = 0;
       uint32_t length_server_id = strlen(this->server_id);
-      memcpy(outbuffer + offset, &length_server_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_server_id);
       offset += 4;
       memcpy(outbuffer + offset, this->server_id, length_server_id);
       offset += length_server_id;
@@ -59,7 +62,7 @@ namespace visualization_msgs
     {
       int offset = 0;
       uint32_t length_server_id;
-      memcpy(&length_server_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_server_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_server_id; ++k){
           inbuffer[k-1]=inbuffer[k];

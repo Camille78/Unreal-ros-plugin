@@ -14,10 +14,12 @@ namespace gazebo_msgs
   class ContactsState : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t states_length;
-      gazebo_msgs::ContactState st_states;
-      gazebo_msgs::ContactState * states;
+      typedef gazebo_msgs::ContactState _states_type;
+      _states_type st_states;
+      _states_type * states;
 
     ContactsState():
       header(),

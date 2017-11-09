@@ -14,8 +14,9 @@ namespace visualization_msgs
   {
     public:
       uint32_t markers_length;
-      visualization_msgs::Marker st_markers;
-      visualization_msgs::Marker * markers;
+      typedef visualization_msgs::Marker _markers_type;
+      _markers_type st_markers;
+      _markers_type * markers;
 
     MarkerArray():
       markers_length(0), markers(NULL)

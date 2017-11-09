@@ -13,10 +13,12 @@ namespace pcl_msgs
   class PointIndices : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t indices_length;
-      int32_t st_indices;
-      int32_t * indices;
+      typedef int32_t _indices_type;
+      _indices_type st_indices;
+      _indices_type * indices;
 
     PointIndices():
       header(),

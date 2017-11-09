@@ -13,9 +13,12 @@ namespace sensor_msgs
   class RelativeHumidity : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      double relative_humidity;
-      double variance;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef double _relative_humidity_type;
+      _relative_humidity_type relative_humidity;
+      typedef double _variance_type;
+      _variance_type variance;
 
     RelativeHumidity():
       header(),

@@ -40,8 +40,9 @@ static const char LISTCONTROLLERS[] = "controller_manager_msgs/ListControllers";
   {
     public:
       uint32_t controller_length;
-      controller_manager_msgs::ControllerState st_controller;
-      controller_manager_msgs::ControllerState * controller;
+      typedef controller_manager_msgs::ControllerState _controller_type;
+      _controller_type st_controller;
+      _controller_type * controller;
 
     ListControllersResponse():
       controller_length(0), controller(NULL)

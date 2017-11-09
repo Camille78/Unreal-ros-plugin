@@ -13,19 +13,24 @@ namespace sensor_msgs
   class JointState : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t name_length;
-      char* st_name;
-      char* * name;
+      typedef char* _name_type;
+      _name_type st_name;
+      _name_type * name;
       uint32_t position_length;
-      double st_position;
-      double * position;
+      typedef double _position_type;
+      _position_type st_position;
+      _position_type * position;
       uint32_t velocity_length;
-      double st_velocity;
-      double * velocity;
+      typedef double _velocity_type;
+      _velocity_type st_velocity;
+      _velocity_type * velocity;
       uint32_t effort_length;
-      double st_effort;
-      double * effort;
+      typedef double _effort_type;
+      _effort_type st_effort;
+      _effort_type * effort;
 
     JointState():
       header(),
@@ -47,7 +52,7 @@ namespace sensor_msgs
       offset += sizeof(this->name_length);
       for( uint32_t i = 0; i < name_length; i++){
       uint32_t length_namei = strlen(this->name[i]);
-      memcpy(outbuffer + offset, &length_namei, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_namei);
       offset += 4;
       memcpy(outbuffer + offset, this->name[i], length_namei);
       offset += length_namei;
@@ -132,7 +137,7 @@ namespace sensor_msgs
       name_length = name_lengthT;
       for( uint32_t i = 0; i < name_length; i++){
       uint32_t length_st_name;
-      memcpy(&length_st_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_name; ++k){
           inbuffer[k-1]=inbuffer[k];

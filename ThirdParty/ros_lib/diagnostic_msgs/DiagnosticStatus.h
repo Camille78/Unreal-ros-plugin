@@ -13,13 +13,18 @@ namespace diagnostic_msgs
   class DiagnosticStatus : public ros::Msg
   {
     public:
-      int8_t level;
-      const char* name;
-      const char* message;
-      const char* hardware_id;
+      typedef int8_t _level_type;
+      _level_type level;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef const char* _message_type;
+      _message_type message;
+      typedef const char* _hardware_id_type;
+      _hardware_id_type hardware_id;
       uint32_t values_length;
-      diagnostic_msgs::KeyValue st_values;
-      diagnostic_msgs::KeyValue * values;
+      typedef diagnostic_msgs::KeyValue _values_type;
+      _values_type st_values;
+      _values_type * values;
       enum { OK = 0 };
       enum { WARN = 1 };
       enum { ERROR = 2 };
@@ -45,17 +50,17 @@ namespace diagnostic_msgs
       *(outbuffer + offset + 0) = (u_level.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->level);
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
       uint32_t length_message = strlen(this->message);
-      memcpy(outbuffer + offset, &length_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_message);
       offset += 4;
       memcpy(outbuffer + offset, this->message, length_message);
       offset += length_message;
       uint32_t length_hardware_id = strlen(this->hardware_id);
-      memcpy(outbuffer + offset, &length_hardware_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_hardware_id);
       offset += 4;
       memcpy(outbuffer + offset, this->hardware_id, length_hardware_id);
       offset += length_hardware_id;
@@ -82,7 +87,7 @@ namespace diagnostic_msgs
       this->level = u_level.real;
       offset += sizeof(this->level);
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -91,7 +96,7 @@ namespace diagnostic_msgs
       this->name = (char *)(inbuffer + offset-1);
       offset += length_name;
       uint32_t length_message;
-      memcpy(&length_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_message; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -100,7 +105,7 @@ namespace diagnostic_msgs
       this->message = (char *)(inbuffer + offset-1);
       offset += length_message;
       uint32_t length_hardware_id;
-      memcpy(&length_hardware_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_hardware_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_hardware_id; ++k){
           inbuffer[k-1]=inbuffer[k];

@@ -13,9 +13,12 @@ namespace control_msgs
   class SingleJointPositionGoal : public ros::Msg
   {
     public:
-      double position;
-      ros::Duration min_duration;
-      double max_velocity;
+      typedef double _position_type;
+      _position_type position;
+      typedef ros::Duration _min_duration_type;
+      _min_duration_type min_duration;
+      typedef double _max_velocity_type;
+      _max_velocity_type max_velocity;
 
     SingleJointPositionGoal():
       position(0),

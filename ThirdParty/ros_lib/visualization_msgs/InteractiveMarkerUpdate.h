@@ -14,18 +14,24 @@ namespace visualization_msgs
   class InteractiveMarkerUpdate : public ros::Msg
   {
     public:
-      const char* server_id;
-      uint64_t seq_num;
-      uint8_t type;
+      typedef const char* _server_id_type;
+      _server_id_type server_id;
+      typedef uint64_t _seq_num_type;
+      _seq_num_type seq_num;
+      typedef uint8_t _type_type;
+      _type_type type;
       uint32_t markers_length;
-      visualization_msgs::InteractiveMarker st_markers;
-      visualization_msgs::InteractiveMarker * markers;
+      typedef visualization_msgs::InteractiveMarker _markers_type;
+      _markers_type st_markers;
+      _markers_type * markers;
       uint32_t poses_length;
-      visualization_msgs::InteractiveMarkerPose st_poses;
-      visualization_msgs::InteractiveMarkerPose * poses;
+      typedef visualization_msgs::InteractiveMarkerPose _poses_type;
+      _poses_type st_poses;
+      _poses_type * poses;
       uint32_t erases_length;
-      char* st_erases;
-      char* * erases;
+      typedef char* _erases_type;
+      _erases_type st_erases;
+      _erases_type * erases;
       enum { KEEP_ALIVE =  0 };
       enum { UPDATE =  1 };
 
@@ -43,7 +49,7 @@ namespace visualization_msgs
     {
       int offset = 0;
       uint32_t length_server_id = strlen(this->server_id);
-      memcpy(outbuffer + offset, &length_server_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_server_id);
       offset += 4;
       memcpy(outbuffer + offset, this->server_id, length_server_id);
       offset += length_server_id;
@@ -82,7 +88,7 @@ namespace visualization_msgs
       offset += sizeof(this->erases_length);
       for( uint32_t i = 0; i < erases_length; i++){
       uint32_t length_erasesi = strlen(this->erases[i]);
-      memcpy(outbuffer + offset, &length_erasesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_erasesi);
       offset += 4;
       memcpy(outbuffer + offset, this->erases[i], length_erasesi);
       offset += length_erasesi;
@@ -94,7 +100,7 @@ namespace visualization_msgs
     {
       int offset = 0;
       uint32_t length_server_id;
-      memcpy(&length_server_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_server_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_server_id; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -149,7 +155,7 @@ namespace visualization_msgs
       erases_length = erases_lengthT;
       for( uint32_t i = 0; i < erases_length; i++){
       uint32_t length_st_erases;
-      memcpy(&length_st_erases, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_erases, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_erases; ++k){
           inbuffer[k-1]=inbuffer[k];

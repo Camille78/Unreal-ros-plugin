@@ -13,9 +13,12 @@ static const char TELEPORTABSOLUTE[] = "turtlesim/TeleportAbsolute";
   class TeleportAbsoluteRequest : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float theta;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _theta_type;
+      _theta_type theta;
 
     TeleportAbsoluteRequest():
       x(0),

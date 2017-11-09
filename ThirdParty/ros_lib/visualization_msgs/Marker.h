@@ -18,25 +18,40 @@ namespace visualization_msgs
   class Marker : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      const char* ns;
-      int32_t id;
-      int32_t type;
-      int32_t action;
-      geometry_msgs::Pose pose;
-      geometry_msgs::Vector3 scale;
-      std_msgs::ColorRGBA color;
-      ros::Duration lifetime;
-      bool frame_locked;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef const char* _ns_type;
+      _ns_type ns;
+      typedef int32_t _id_type;
+      _id_type id;
+      typedef int32_t _type_type;
+      _type_type type;
+      typedef int32_t _action_type;
+      _action_type action;
+      typedef geometry_msgs::Pose _pose_type;
+      _pose_type pose;
+      typedef geometry_msgs::Vector3 _scale_type;
+      _scale_type scale;
+      typedef std_msgs::ColorRGBA _color_type;
+      _color_type color;
+      typedef ros::Duration _lifetime_type;
+      _lifetime_type lifetime;
+      typedef bool _frame_locked_type;
+      _frame_locked_type frame_locked;
       uint32_t points_length;
-      geometry_msgs::Point st_points;
-      geometry_msgs::Point * points;
+      typedef geometry_msgs::Point _points_type;
+      _points_type st_points;
+      _points_type * points;
       uint32_t colors_length;
-      std_msgs::ColorRGBA st_colors;
-      std_msgs::ColorRGBA * colors;
-      const char* text;
-      const char* mesh_resource;
-      bool mesh_use_embedded_materials;
+      typedef std_msgs::ColorRGBA _colors_type;
+      _colors_type st_colors;
+      _colors_type * colors;
+      typedef const char* _text_type;
+      _text_type text;
+      typedef const char* _mesh_resource_type;
+      _mesh_resource_type mesh_resource;
+      typedef bool _mesh_use_embedded_materials_type;
+      _mesh_use_embedded_materials_type mesh_use_embedded_materials;
       enum { ARROW = 0 };
       enum { CUBE = 1 };
       enum { SPHERE = 2 };
@@ -78,7 +93,7 @@ namespace visualization_msgs
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
       uint32_t length_ns = strlen(this->ns);
-      memcpy(outbuffer + offset, &length_ns, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_ns);
       offset += 4;
       memcpy(outbuffer + offset, this->ns, length_ns);
       offset += length_ns;
@@ -149,12 +164,12 @@ namespace visualization_msgs
       offset += this->colors[i].serialize(outbuffer + offset);
       }
       uint32_t length_text = strlen(this->text);
-      memcpy(outbuffer + offset, &length_text, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_text);
       offset += 4;
       memcpy(outbuffer + offset, this->text, length_text);
       offset += length_text;
       uint32_t length_mesh_resource = strlen(this->mesh_resource);
-      memcpy(outbuffer + offset, &length_mesh_resource, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_mesh_resource);
       offset += 4;
       memcpy(outbuffer + offset, this->mesh_resource, length_mesh_resource);
       offset += length_mesh_resource;
@@ -173,7 +188,7 @@ namespace visualization_msgs
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
       uint32_t length_ns;
-      memcpy(&length_ns, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_ns, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_ns; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -260,7 +275,7 @@ namespace visualization_msgs
         memcpy( &(this->colors[i]), &(this->st_colors), sizeof(std_msgs::ColorRGBA));
       }
       uint32_t length_text;
-      memcpy(&length_text, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_text, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_text; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -269,7 +284,7 @@ namespace visualization_msgs
       this->text = (char *)(inbuffer + offset-1);
       offset += length_text;
       uint32_t length_mesh_resource;
-      memcpy(&length_mesh_resource, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_mesh_resource, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_mesh_resource; ++k){
           inbuffer[k-1]=inbuffer[k];

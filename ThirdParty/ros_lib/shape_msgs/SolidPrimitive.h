@@ -12,10 +12,12 @@ namespace shape_msgs
   class SolidPrimitive : public ros::Msg
   {
     public:
-      uint8_t type;
+      typedef uint8_t _type_type;
+      _type_type type;
       uint32_t dimensions_length;
-      double st_dimensions;
-      double * dimensions;
+      typedef double _dimensions_type;
+      _dimensions_type st_dimensions;
+      _dimensions_type * dimensions;
       enum { BOX = 1 };
       enum { SPHERE = 2 };
       enum { CYLINDER = 3 };

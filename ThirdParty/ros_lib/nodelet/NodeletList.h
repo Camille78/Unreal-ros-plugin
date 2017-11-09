@@ -39,8 +39,9 @@ static const char NODELETLIST[] = "nodelet/NodeletList";
   {
     public:
       uint32_t nodelets_length;
-      char* st_nodelets;
-      char* * nodelets;
+      typedef char* _nodelets_type;
+      _nodelets_type st_nodelets;
+      _nodelets_type * nodelets;
 
     NodeletListResponse():
       nodelets_length(0), nodelets(NULL)
@@ -57,7 +58,7 @@ static const char NODELETLIST[] = "nodelet/NodeletList";
       offset += sizeof(this->nodelets_length);
       for( uint32_t i = 0; i < nodelets_length; i++){
       uint32_t length_nodeletsi = strlen(this->nodelets[i]);
-      memcpy(outbuffer + offset, &length_nodeletsi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_nodeletsi);
       offset += 4;
       memcpy(outbuffer + offset, this->nodelets[i], length_nodeletsi);
       offset += length_nodeletsi;
@@ -78,7 +79,7 @@ static const char NODELETLIST[] = "nodelet/NodeletList";
       nodelets_length = nodelets_lengthT;
       for( uint32_t i = 0; i < nodelets_length; i++){
       uint32_t length_st_nodelets;
-      memcpy(&length_st_nodelets, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_nodelets, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_nodelets; ++k){
           inbuffer[k-1]=inbuffer[k];

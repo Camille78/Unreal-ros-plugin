@@ -13,18 +13,30 @@ namespace control_msgs
   class JointControllerState : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      double set_point;
-      double process_value;
-      double process_value_dot;
-      double error;
-      double time_step;
-      double command;
-      double p;
-      double i;
-      double d;
-      double i_clamp;
-      bool antiwindup;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef double _set_point_type;
+      _set_point_type set_point;
+      typedef double _process_value_type;
+      _process_value_type process_value;
+      typedef double _process_value_dot_type;
+      _process_value_dot_type process_value_dot;
+      typedef double _error_type;
+      _error_type error;
+      typedef double _time_step_type;
+      _time_step_type time_step;
+      typedef double _command_type;
+      _command_type command;
+      typedef double _p_type;
+      _p_type p;
+      typedef double _i_type;
+      _i_type i;
+      typedef double _d_type;
+      _d_type d;
+      typedef double _i_clamp_type;
+      _i_clamp_type i_clamp;
+      typedef bool _antiwindup_type;
+      _antiwindup_type antiwindup;
 
     JointControllerState():
       header(),

@@ -14,10 +14,12 @@ namespace actionlib_msgs
   class GoalStatusArray : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t status_list_length;
-      actionlib_msgs::GoalStatus st_status_list;
-      actionlib_msgs::GoalStatus * status_list;
+      typedef actionlib_msgs::GoalStatus _status_list_type;
+      _status_list_type st_status_list;
+      _status_list_type * status_list;
 
     GoalStatusArray():
       header(),

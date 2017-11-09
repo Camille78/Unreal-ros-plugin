@@ -16,15 +16,19 @@ namespace trajectory_msgs
   {
     public:
       uint32_t transforms_length;
-      geometry_msgs::Transform st_transforms;
-      geometry_msgs::Transform * transforms;
+      typedef geometry_msgs::Transform _transforms_type;
+      _transforms_type st_transforms;
+      _transforms_type * transforms;
       uint32_t velocities_length;
-      geometry_msgs::Twist st_velocities;
-      geometry_msgs::Twist * velocities;
+      typedef geometry_msgs::Twist _velocities_type;
+      _velocities_type st_velocities;
+      _velocities_type * velocities;
       uint32_t accelerations_length;
-      geometry_msgs::Twist st_accelerations;
-      geometry_msgs::Twist * accelerations;
-      ros::Duration time_from_start;
+      typedef geometry_msgs::Twist _accelerations_type;
+      _accelerations_type st_accelerations;
+      _accelerations_type * accelerations;
+      typedef ros::Duration _time_from_start_type;
+      _time_from_start_type time_from_start;
 
     MultiDOFJointTrajectoryPoint():
       transforms_length(0), transforms(NULL),

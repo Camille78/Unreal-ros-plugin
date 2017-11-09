@@ -14,13 +14,20 @@ static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
   class GetPointMapROIRequest : public ros::Msg
   {
     public:
-      double x;
-      double y;
-      double z;
-      double r;
-      double l_x;
-      double l_y;
-      double l_z;
+      typedef double _x_type;
+      _x_type x;
+      typedef double _y_type;
+      _y_type y;
+      typedef double _z_type;
+      _z_type z;
+      typedef double _r_type;
+      _r_type r;
+      typedef double _l_x_type;
+      _l_x_type l_x;
+      typedef double _l_y_type;
+      _l_y_type l_y;
+      typedef double _l_z_type;
+      _l_z_type l_z;
 
     GetPointMapROIRequest():
       x(0),
@@ -256,7 +263,8 @@ static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
   class GetPointMapROIResponse : public ros::Msg
   {
     public:
-      sensor_msgs::PointCloud2 sub_map;
+      typedef sensor_msgs::PointCloud2 _sub_map_type;
+      _sub_map_type sub_map;
 
     GetPointMapROIResponse():
       sub_map()

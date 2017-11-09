@@ -15,11 +15,13 @@ namespace shape_msgs
   {
     public:
       uint32_t triangles_length;
-      shape_msgs::MeshTriangle st_triangles;
-      shape_msgs::MeshTriangle * triangles;
+      typedef shape_msgs::MeshTriangle _triangles_type;
+      _triangles_type st_triangles;
+      _triangles_type * triangles;
       uint32_t vertices_length;
-      geometry_msgs::Point st_vertices;
-      geometry_msgs::Point * vertices;
+      typedef geometry_msgs::Point _vertices_type;
+      _vertices_type st_vertices;
+      _vertices_type * vertices;
 
     Mesh():
       triangles_length(0), triangles(NULL),

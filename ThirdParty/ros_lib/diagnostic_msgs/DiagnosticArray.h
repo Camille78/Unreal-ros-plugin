@@ -14,10 +14,12 @@ namespace diagnostic_msgs
   class DiagnosticArray : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t status_length;
-      diagnostic_msgs::DiagnosticStatus st_status;
-      diagnostic_msgs::DiagnosticStatus * status;
+      typedef diagnostic_msgs::DiagnosticStatus _status_type;
+      _status_type st_status;
+      _status_type * status;
 
     DiagnosticArray():
       header(),

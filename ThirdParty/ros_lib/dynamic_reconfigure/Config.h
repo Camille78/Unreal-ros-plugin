@@ -18,20 +18,25 @@ namespace dynamic_reconfigure
   {
     public:
       uint32_t bools_length;
-      dynamic_reconfigure::BoolParameter st_bools;
-      dynamic_reconfigure::BoolParameter * bools;
+      typedef dynamic_reconfigure::BoolParameter _bools_type;
+      _bools_type st_bools;
+      _bools_type * bools;
       uint32_t ints_length;
-      dynamic_reconfigure::IntParameter st_ints;
-      dynamic_reconfigure::IntParameter * ints;
+      typedef dynamic_reconfigure::IntParameter _ints_type;
+      _ints_type st_ints;
+      _ints_type * ints;
       uint32_t strs_length;
-      dynamic_reconfigure::StrParameter st_strs;
-      dynamic_reconfigure::StrParameter * strs;
+      typedef dynamic_reconfigure::StrParameter _strs_type;
+      _strs_type st_strs;
+      _strs_type * strs;
       uint32_t doubles_length;
-      dynamic_reconfigure::DoubleParameter st_doubles;
-      dynamic_reconfigure::DoubleParameter * doubles;
+      typedef dynamic_reconfigure::DoubleParameter _doubles_type;
+      _doubles_type st_doubles;
+      _doubles_type * doubles;
       uint32_t groups_length;
-      dynamic_reconfigure::GroupState st_groups;
-      dynamic_reconfigure::GroupState * groups;
+      typedef dynamic_reconfigure::GroupState _groups_type;
+      _groups_type st_groups;
+      _groups_type * groups;
 
     Config():
       bools_length(0), bools(NULL),

@@ -13,14 +13,18 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
   class SetModelConfigurationRequest : public ros::Msg
   {
     public:
-      const char* model_name;
-      const char* urdf_param_name;
+      typedef const char* _model_name_type;
+      _model_name_type model_name;
+      typedef const char* _urdf_param_name_type;
+      _urdf_param_name_type urdf_param_name;
       uint32_t joint_names_length;
-      char* st_joint_names;
-      char* * joint_names;
+      typedef char* _joint_names_type;
+      _joint_names_type st_joint_names;
+      _joint_names_type * joint_names;
       uint32_t joint_positions_length;
-      double st_joint_positions;
-      double * joint_positions;
+      typedef double _joint_positions_type;
+      _joint_positions_type st_joint_positions;
+      _joint_positions_type * joint_positions;
 
     SetModelConfigurationRequest():
       model_name(""),
@@ -34,12 +38,12 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
     {
       int offset = 0;
       uint32_t length_model_name = strlen(this->model_name);
-      memcpy(outbuffer + offset, &length_model_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_model_name);
       offset += 4;
       memcpy(outbuffer + offset, this->model_name, length_model_name);
       offset += length_model_name;
       uint32_t length_urdf_param_name = strlen(this->urdf_param_name);
-      memcpy(outbuffer + offset, &length_urdf_param_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_urdf_param_name);
       offset += 4;
       memcpy(outbuffer + offset, this->urdf_param_name, length_urdf_param_name);
       offset += length_urdf_param_name;
@@ -50,7 +54,7 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
       offset += sizeof(this->joint_names_length);
       for( uint32_t i = 0; i < joint_names_length; i++){
       uint32_t length_joint_namesi = strlen(this->joint_names[i]);
-      memcpy(outbuffer + offset, &length_joint_namesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_joint_namesi);
       offset += 4;
       memcpy(outbuffer + offset, this->joint_names[i], length_joint_namesi);
       offset += length_joint_namesi;
@@ -83,7 +87,7 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
     {
       int offset = 0;
       uint32_t length_model_name;
-      memcpy(&length_model_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_model_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_model_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -92,7 +96,7 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
       this->model_name = (char *)(inbuffer + offset-1);
       offset += length_model_name;
       uint32_t length_urdf_param_name;
-      memcpy(&length_urdf_param_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_urdf_param_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_urdf_param_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -110,7 +114,7 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
       joint_names_length = joint_names_lengthT;
       for( uint32_t i = 0; i < joint_names_length; i++){
       uint32_t length_st_joint_names;
-      memcpy(&length_st_joint_names, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_joint_names, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_joint_names; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -157,8 +161,10 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
   class SetModelConfigurationResponse : public ros::Msg
   {
     public:
-      bool success;
-      const char* status_message;
+      typedef bool _success_type;
+      _success_type success;
+      typedef const char* _status_message_type;
+      _status_message_type status_message;
 
     SetModelConfigurationResponse():
       success(0),
@@ -177,7 +183,7 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
       *(outbuffer + offset + 0) = (u_success.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->success);
       uint32_t length_status_message = strlen(this->status_message);
-      memcpy(outbuffer + offset, &length_status_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status_message);
       offset += 4;
       memcpy(outbuffer + offset, this->status_message, length_status_message);
       offset += length_status_message;
@@ -196,7 +202,7 @@ static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
       this->success = u_success.real;
       offset += sizeof(this->success);
       uint32_t length_status_message;
-      memcpy(&length_status_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status_message; ++k){
           inbuffer[k-1]=inbuffer[k];

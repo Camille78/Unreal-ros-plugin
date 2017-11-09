@@ -14,13 +14,19 @@ namespace sensor_msgs
   class NavSatFix : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      sensor_msgs::NavSatStatus status;
-      double latitude;
-      double longitude;
-      double altitude;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef sensor_msgs::NavSatStatus _status_type;
+      _status_type status;
+      typedef double _latitude_type;
+      _latitude_type latitude;
+      typedef double _longitude_type;
+      _longitude_type longitude;
+      typedef double _altitude_type;
+      _altitude_type altitude;
       double position_covariance[9];
-      uint8_t position_covariance_type;
+      typedef uint8_t _position_covariance_type_type;
+      _position_covariance_type_type position_covariance_type;
       enum { COVARIANCE_TYPE_UNKNOWN =  0 };
       enum { COVARIANCE_TYPE_APPROXIMATED =  1 };
       enum { COVARIANCE_TYPE_DIAGONAL_KNOWN =  2 };

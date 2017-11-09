@@ -12,10 +12,14 @@ namespace geometry_msgs
   class Quaternion : public ros::Msg
   {
     public:
-      double x;
-      double y;
-      double z;
-      double w;
+      typedef double _x_type;
+      _x_type x;
+      typedef double _y_type;
+      _y_type y;
+      typedef double _z_type;
+      _z_type z;
+      typedef double _w_type;
+      _w_type w;
 
     Quaternion():
       x(0),

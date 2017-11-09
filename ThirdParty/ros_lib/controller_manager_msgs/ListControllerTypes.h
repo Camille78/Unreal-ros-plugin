@@ -39,11 +39,13 @@ static const char LISTCONTROLLERTYPES[] = "controller_manager_msgs/ListControlle
   {
     public:
       uint32_t types_length;
-      char* st_types;
-      char* * types;
+      typedef char* _types_type;
+      _types_type st_types;
+      _types_type * types;
       uint32_t base_classes_length;
-      char* st_base_classes;
-      char* * base_classes;
+      typedef char* _base_classes_type;
+      _base_classes_type st_base_classes;
+      _base_classes_type * base_classes;
 
     ListControllerTypesResponse():
       types_length(0), types(NULL),
@@ -61,7 +63,7 @@ static const char LISTCONTROLLERTYPES[] = "controller_manager_msgs/ListControlle
       offset += sizeof(this->types_length);
       for( uint32_t i = 0; i < types_length; i++){
       uint32_t length_typesi = strlen(this->types[i]);
-      memcpy(outbuffer + offset, &length_typesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_typesi);
       offset += 4;
       memcpy(outbuffer + offset, this->types[i], length_typesi);
       offset += length_typesi;
@@ -73,7 +75,7 @@ static const char LISTCONTROLLERTYPES[] = "controller_manager_msgs/ListControlle
       offset += sizeof(this->base_classes_length);
       for( uint32_t i = 0; i < base_classes_length; i++){
       uint32_t length_base_classesi = strlen(this->base_classes[i]);
-      memcpy(outbuffer + offset, &length_base_classesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_base_classesi);
       offset += 4;
       memcpy(outbuffer + offset, this->base_classes[i], length_base_classesi);
       offset += length_base_classesi;
@@ -94,7 +96,7 @@ static const char LISTCONTROLLERTYPES[] = "controller_manager_msgs/ListControlle
       types_length = types_lengthT;
       for( uint32_t i = 0; i < types_length; i++){
       uint32_t length_st_types;
-      memcpy(&length_st_types, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_types, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_types; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -114,7 +116,7 @@ static const char LISTCONTROLLERTYPES[] = "controller_manager_msgs/ListControlle
       base_classes_length = base_classes_lengthT;
       for( uint32_t i = 0; i < base_classes_length; i++){
       uint32_t length_st_base_classes;
-      memcpy(&length_st_base_classes, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_base_classes, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_base_classes; ++k){
           inbuffer[k-1]=inbuffer[k];

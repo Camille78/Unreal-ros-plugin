@@ -14,12 +14,15 @@ static const char SWITCHCONTROLLER[] = "controller_manager_msgs/SwitchController
   {
     public:
       uint32_t start_controllers_length;
-      char* st_start_controllers;
-      char* * start_controllers;
+      typedef char* _start_controllers_type;
+      _start_controllers_type st_start_controllers;
+      _start_controllers_type * start_controllers;
       uint32_t stop_controllers_length;
-      char* st_stop_controllers;
-      char* * stop_controllers;
-      int32_t strictness;
+      typedef char* _stop_controllers_type;
+      _stop_controllers_type st_stop_controllers;
+      _stop_controllers_type * stop_controllers;
+      typedef int32_t _strictness_type;
+      _strictness_type strictness;
       enum { BEST_EFFORT = 1 };
       enum { STRICT = 2 };
 
@@ -40,7 +43,7 @@ static const char SWITCHCONTROLLER[] = "controller_manager_msgs/SwitchController
       offset += sizeof(this->start_controllers_length);
       for( uint32_t i = 0; i < start_controllers_length; i++){
       uint32_t length_start_controllersi = strlen(this->start_controllers[i]);
-      memcpy(outbuffer + offset, &length_start_controllersi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_start_controllersi);
       offset += 4;
       memcpy(outbuffer + offset, this->start_controllers[i], length_start_controllersi);
       offset += length_start_controllersi;
@@ -52,7 +55,7 @@ static const char SWITCHCONTROLLER[] = "controller_manager_msgs/SwitchController
       offset += sizeof(this->stop_controllers_length);
       for( uint32_t i = 0; i < stop_controllers_length; i++){
       uint32_t length_stop_controllersi = strlen(this->stop_controllers[i]);
-      memcpy(outbuffer + offset, &length_stop_controllersi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_stop_controllersi);
       offset += 4;
       memcpy(outbuffer + offset, this->stop_controllers[i], length_stop_controllersi);
       offset += length_stop_controllersi;
@@ -83,7 +86,7 @@ static const char SWITCHCONTROLLER[] = "controller_manager_msgs/SwitchController
       start_controllers_length = start_controllers_lengthT;
       for( uint32_t i = 0; i < start_controllers_length; i++){
       uint32_t length_st_start_controllers;
-      memcpy(&length_st_start_controllers, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_start_controllers, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_start_controllers; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -103,7 +106,7 @@ static const char SWITCHCONTROLLER[] = "controller_manager_msgs/SwitchController
       stop_controllers_length = stop_controllers_lengthT;
       for( uint32_t i = 0; i < stop_controllers_length; i++){
       uint32_t length_st_stop_controllers;
-      memcpy(&length_st_stop_controllers, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_stop_controllers, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_stop_controllers; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -135,7 +138,8 @@ static const char SWITCHCONTROLLER[] = "controller_manager_msgs/SwitchController
   class SwitchControllerResponse : public ros::Msg
   {
     public:
-      bool ok;
+      typedef bool _ok_type;
+      _ok_type ok;
 
     SwitchControllerResponse():
       ok(0)

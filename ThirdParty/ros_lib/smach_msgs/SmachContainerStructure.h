@@ -13,23 +13,30 @@ namespace smach_msgs
   class SmachContainerStructure : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      const char* path;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef const char* _path_type;
+      _path_type path;
       uint32_t children_length;
-      char* st_children;
-      char* * children;
+      typedef char* _children_type;
+      _children_type st_children;
+      _children_type * children;
       uint32_t internal_outcomes_length;
-      char* st_internal_outcomes;
-      char* * internal_outcomes;
+      typedef char* _internal_outcomes_type;
+      _internal_outcomes_type st_internal_outcomes;
+      _internal_outcomes_type * internal_outcomes;
       uint32_t outcomes_from_length;
-      char* st_outcomes_from;
-      char* * outcomes_from;
+      typedef char* _outcomes_from_type;
+      _outcomes_from_type st_outcomes_from;
+      _outcomes_from_type * outcomes_from;
       uint32_t outcomes_to_length;
-      char* st_outcomes_to;
-      char* * outcomes_to;
+      typedef char* _outcomes_to_type;
+      _outcomes_to_type st_outcomes_to;
+      _outcomes_to_type * outcomes_to;
       uint32_t container_outcomes_length;
-      char* st_container_outcomes;
-      char* * container_outcomes;
+      typedef char* _container_outcomes_type;
+      _container_outcomes_type st_container_outcomes;
+      _container_outcomes_type * container_outcomes;
 
     SmachContainerStructure():
       header(),
@@ -47,7 +54,7 @@ namespace smach_msgs
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
       uint32_t length_path = strlen(this->path);
-      memcpy(outbuffer + offset, &length_path, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_path);
       offset += 4;
       memcpy(outbuffer + offset, this->path, length_path);
       offset += length_path;
@@ -58,7 +65,7 @@ namespace smach_msgs
       offset += sizeof(this->children_length);
       for( uint32_t i = 0; i < children_length; i++){
       uint32_t length_childreni = strlen(this->children[i]);
-      memcpy(outbuffer + offset, &length_childreni, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_childreni);
       offset += 4;
       memcpy(outbuffer + offset, this->children[i], length_childreni);
       offset += length_childreni;
@@ -70,7 +77,7 @@ namespace smach_msgs
       offset += sizeof(this->internal_outcomes_length);
       for( uint32_t i = 0; i < internal_outcomes_length; i++){
       uint32_t length_internal_outcomesi = strlen(this->internal_outcomes[i]);
-      memcpy(outbuffer + offset, &length_internal_outcomesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_internal_outcomesi);
       offset += 4;
       memcpy(outbuffer + offset, this->internal_outcomes[i], length_internal_outcomesi);
       offset += length_internal_outcomesi;
@@ -82,7 +89,7 @@ namespace smach_msgs
       offset += sizeof(this->outcomes_from_length);
       for( uint32_t i = 0; i < outcomes_from_length; i++){
       uint32_t length_outcomes_fromi = strlen(this->outcomes_from[i]);
-      memcpy(outbuffer + offset, &length_outcomes_fromi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_outcomes_fromi);
       offset += 4;
       memcpy(outbuffer + offset, this->outcomes_from[i], length_outcomes_fromi);
       offset += length_outcomes_fromi;
@@ -94,7 +101,7 @@ namespace smach_msgs
       offset += sizeof(this->outcomes_to_length);
       for( uint32_t i = 0; i < outcomes_to_length; i++){
       uint32_t length_outcomes_toi = strlen(this->outcomes_to[i]);
-      memcpy(outbuffer + offset, &length_outcomes_toi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_outcomes_toi);
       offset += 4;
       memcpy(outbuffer + offset, this->outcomes_to[i], length_outcomes_toi);
       offset += length_outcomes_toi;
@@ -106,7 +113,7 @@ namespace smach_msgs
       offset += sizeof(this->container_outcomes_length);
       for( uint32_t i = 0; i < container_outcomes_length; i++){
       uint32_t length_container_outcomesi = strlen(this->container_outcomes[i]);
-      memcpy(outbuffer + offset, &length_container_outcomesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_container_outcomesi);
       offset += 4;
       memcpy(outbuffer + offset, this->container_outcomes[i], length_container_outcomesi);
       offset += length_container_outcomesi;
@@ -119,7 +126,7 @@ namespace smach_msgs
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
       uint32_t length_path;
-      memcpy(&length_path, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_path, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_path; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -137,7 +144,7 @@ namespace smach_msgs
       children_length = children_lengthT;
       for( uint32_t i = 0; i < children_length; i++){
       uint32_t length_st_children;
-      memcpy(&length_st_children, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_children, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_children; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -157,7 +164,7 @@ namespace smach_msgs
       internal_outcomes_length = internal_outcomes_lengthT;
       for( uint32_t i = 0; i < internal_outcomes_length; i++){
       uint32_t length_st_internal_outcomes;
-      memcpy(&length_st_internal_outcomes, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_internal_outcomes, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_internal_outcomes; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -177,7 +184,7 @@ namespace smach_msgs
       outcomes_from_length = outcomes_from_lengthT;
       for( uint32_t i = 0; i < outcomes_from_length; i++){
       uint32_t length_st_outcomes_from;
-      memcpy(&length_st_outcomes_from, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_outcomes_from, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_outcomes_from; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -197,7 +204,7 @@ namespace smach_msgs
       outcomes_to_length = outcomes_to_lengthT;
       for( uint32_t i = 0; i < outcomes_to_length; i++){
       uint32_t length_st_outcomes_to;
-      memcpy(&length_st_outcomes_to, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_outcomes_to, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_outcomes_to; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -217,7 +224,7 @@ namespace smach_msgs
       container_outcomes_length = container_outcomes_lengthT;
       for( uint32_t i = 0; i < container_outcomes_length; i++){
       uint32_t length_st_container_outcomes;
-      memcpy(&length_st_container_outcomes, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_container_outcomes, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_container_outcomes; ++k){
           inbuffer[k-1]=inbuffer[k];

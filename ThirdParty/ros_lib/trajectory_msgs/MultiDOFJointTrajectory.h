@@ -14,13 +14,16 @@ namespace trajectory_msgs
   class MultiDOFJointTrajectory : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t joint_names_length;
-      char* st_joint_names;
-      char* * joint_names;
+      typedef char* _joint_names_type;
+      _joint_names_type st_joint_names;
+      _joint_names_type * joint_names;
       uint32_t points_length;
-      trajectory_msgs::MultiDOFJointTrajectoryPoint st_points;
-      trajectory_msgs::MultiDOFJointTrajectoryPoint * points;
+      typedef trajectory_msgs::MultiDOFJointTrajectoryPoint _points_type;
+      _points_type st_points;
+      _points_type * points;
 
     MultiDOFJointTrajectory():
       header(),
@@ -40,7 +43,7 @@ namespace trajectory_msgs
       offset += sizeof(this->joint_names_length);
       for( uint32_t i = 0; i < joint_names_length; i++){
       uint32_t length_joint_namesi = strlen(this->joint_names[i]);
-      memcpy(outbuffer + offset, &length_joint_namesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_joint_namesi);
       offset += 4;
       memcpy(outbuffer + offset, this->joint_names[i], length_joint_namesi);
       offset += length_joint_namesi;
@@ -70,7 +73,7 @@ namespace trajectory_msgs
       joint_names_length = joint_names_lengthT;
       for( uint32_t i = 0; i < joint_names_length; i++){
       uint32_t length_st_joint_names;
-      memcpy(&length_st_joint_names, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_joint_names, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_joint_names; ++k){
           inbuffer[k-1]=inbuffer[k];

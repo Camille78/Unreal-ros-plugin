@@ -14,10 +14,12 @@ namespace controller_manager_msgs
   class ControllersStatistics : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t controller_length;
-      controller_manager_msgs::ControllerStatistics st_controller;
-      controller_manager_msgs::ControllerStatistics * controller;
+      typedef controller_manager_msgs::ControllerStatistics _controller_type;
+      _controller_type st_controller;
+      _controller_type * controller;
 
     ControllersStatistics():
       header(),

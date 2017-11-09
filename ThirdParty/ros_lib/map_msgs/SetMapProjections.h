@@ -40,8 +40,9 @@ static const char SETMAPPROJECTIONS[] = "map_msgs/SetMapProjections";
   {
     public:
       uint32_t projected_maps_info_length;
-      map_msgs::ProjectedMapInfo st_projected_maps_info;
-      map_msgs::ProjectedMapInfo * projected_maps_info;
+      typedef map_msgs::ProjectedMapInfo _projected_maps_info_type;
+      _projected_maps_info_type st_projected_maps_info;
+      _projected_maps_info_type * projected_maps_info;
 
     SetMapProjectionsResponse():
       projected_maps_info_length(0), projected_maps_info(NULL)

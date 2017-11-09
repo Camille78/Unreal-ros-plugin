@@ -15,14 +15,17 @@ namespace gazebo_msgs
   {
     public:
       uint32_t name_length;
-      char* st_name;
-      char* * name;
+      typedef char* _name_type;
+      _name_type st_name;
+      _name_type * name;
       uint32_t pose_length;
-      geometry_msgs::Pose st_pose;
-      geometry_msgs::Pose * pose;
+      typedef geometry_msgs::Pose _pose_type;
+      _pose_type st_pose;
+      _pose_type * pose;
       uint32_t twist_length;
-      geometry_msgs::Twist st_twist;
-      geometry_msgs::Twist * twist;
+      typedef geometry_msgs::Twist _twist_type;
+      _twist_type st_twist;
+      _twist_type * twist;
 
     LinkStates():
       name_length(0), name(NULL),
@@ -41,7 +44,7 @@ namespace gazebo_msgs
       offset += sizeof(this->name_length);
       for( uint32_t i = 0; i < name_length; i++){
       uint32_t length_namei = strlen(this->name[i]);
-      memcpy(outbuffer + offset, &length_namei, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_namei);
       offset += 4;
       memcpy(outbuffer + offset, this->name[i], length_namei);
       offset += length_namei;
@@ -78,7 +81,7 @@ namespace gazebo_msgs
       name_length = name_lengthT;
       for( uint32_t i = 0; i < name_length; i++){
       uint32_t length_st_name;
-      memcpy(&length_st_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_name; ++k){
           inbuffer[k-1]=inbuffer[k];

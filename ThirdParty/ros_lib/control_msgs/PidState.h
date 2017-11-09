@@ -14,19 +14,32 @@ namespace control_msgs
   class PidState : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      ros::Duration timestep;
-      double error;
-      double error_dot;
-      double p_error;
-      double i_error;
-      double d_error;
-      double p_term;
-      double i_term;
-      double d_term;
-      double i_max;
-      double i_min;
-      double output;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef ros::Duration _timestep_type;
+      _timestep_type timestep;
+      typedef double _error_type;
+      _error_type error;
+      typedef double _error_dot_type;
+      _error_dot_type error_dot;
+      typedef double _p_error_type;
+      _p_error_type p_error;
+      typedef double _i_error_type;
+      _i_error_type i_error;
+      typedef double _d_error_type;
+      _d_error_type d_error;
+      typedef double _p_term_type;
+      _p_term_type p_term;
+      typedef double _i_term_type;
+      _i_term_type i_term;
+      typedef double _d_term_type;
+      _d_term_type d_term;
+      typedef double _i_max_type;
+      _i_max_type i_max;
+      typedef double _i_min_type;
+      _i_min_type i_min;
+      typedef double _output_type;
+      _output_type output;
 
     PidState():
       header(),

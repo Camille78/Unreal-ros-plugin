@@ -15,11 +15,15 @@ namespace dynamic_reconfigure
   {
     public:
       uint32_t groups_length;
-      dynamic_reconfigure::Group st_groups;
-      dynamic_reconfigure::Group * groups;
-      dynamic_reconfigure::Config max;
-      dynamic_reconfigure::Config min;
-      dynamic_reconfigure::Config dflt;
+      typedef dynamic_reconfigure::Group _groups_type;
+      _groups_type st_groups;
+      _groups_type * groups;
+      typedef dynamic_reconfigure::Config _max_type;
+      _max_type max;
+      typedef dynamic_reconfigure::Config _min_type;
+      _min_type min;
+      typedef dynamic_reconfigure::Config _dflt_type;
+      _dflt_type dflt;
 
     ConfigDescription():
       groups_length(0), groups(NULL),

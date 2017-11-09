@@ -14,13 +14,18 @@ namespace control_msgs
   class JointTrajectoryControllerState : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t joint_names_length;
-      char* st_joint_names;
-      char* * joint_names;
-      trajectory_msgs::JointTrajectoryPoint desired;
-      trajectory_msgs::JointTrajectoryPoint actual;
-      trajectory_msgs::JointTrajectoryPoint error;
+      typedef char* _joint_names_type;
+      _joint_names_type st_joint_names;
+      _joint_names_type * joint_names;
+      typedef trajectory_msgs::JointTrajectoryPoint _desired_type;
+      _desired_type desired;
+      typedef trajectory_msgs::JointTrajectoryPoint _actual_type;
+      _actual_type actual;
+      typedef trajectory_msgs::JointTrajectoryPoint _error_type;
+      _error_type error;
 
     JointTrajectoryControllerState():
       header(),
@@ -42,7 +47,7 @@ namespace control_msgs
       offset += sizeof(this->joint_names_length);
       for( uint32_t i = 0; i < joint_names_length; i++){
       uint32_t length_joint_namesi = strlen(this->joint_names[i]);
-      memcpy(outbuffer + offset, &length_joint_namesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_joint_namesi);
       offset += 4;
       memcpy(outbuffer + offset, this->joint_names[i], length_joint_namesi);
       offset += length_joint_namesi;
@@ -67,7 +72,7 @@ namespace control_msgs
       joint_names_length = joint_names_lengthT;
       for( uint32_t i = 0; i < joint_names_length; i++){
       uint32_t length_st_joint_names;
-      memcpy(&length_st_joint_names, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_joint_names, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_joint_names; ++k){
           inbuffer[k-1]=inbuffer[k];

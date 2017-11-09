@@ -13,8 +13,9 @@ namespace rospy_tutorials
   {
     public:
       uint32_t data_length;
-      float st_data;
-      float * data;
+      typedef float _data_type;
+      _data_type st_data;
+      _data_type * data;
 
     Floats():
       data_length(0), data(NULL)

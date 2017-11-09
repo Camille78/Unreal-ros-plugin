@@ -14,22 +14,30 @@ namespace gazebo_msgs
   class ContactState : public ros::Msg
   {
     public:
-      const char* info;
-      const char* collision1_name;
-      const char* collision2_name;
+      typedef const char* _info_type;
+      _info_type info;
+      typedef const char* _collision1_name_type;
+      _collision1_name_type collision1_name;
+      typedef const char* _collision2_name_type;
+      _collision2_name_type collision2_name;
       uint32_t wrenches_length;
-      geometry_msgs::Wrench st_wrenches;
-      geometry_msgs::Wrench * wrenches;
-      geometry_msgs::Wrench total_wrench;
+      typedef geometry_msgs::Wrench _wrenches_type;
+      _wrenches_type st_wrenches;
+      _wrenches_type * wrenches;
+      typedef geometry_msgs::Wrench _total_wrench_type;
+      _total_wrench_type total_wrench;
       uint32_t contact_positions_length;
-      geometry_msgs::Vector3 st_contact_positions;
-      geometry_msgs::Vector3 * contact_positions;
+      typedef geometry_msgs::Vector3 _contact_positions_type;
+      _contact_positions_type st_contact_positions;
+      _contact_positions_type * contact_positions;
       uint32_t contact_normals_length;
-      geometry_msgs::Vector3 st_contact_normals;
-      geometry_msgs::Vector3 * contact_normals;
+      typedef geometry_msgs::Vector3 _contact_normals_type;
+      _contact_normals_type st_contact_normals;
+      _contact_normals_type * contact_normals;
       uint32_t depths_length;
-      double st_depths;
-      double * depths;
+      typedef double _depths_type;
+      _depths_type st_depths;
+      _depths_type * depths;
 
     ContactState():
       info(""),
@@ -47,17 +55,17 @@ namespace gazebo_msgs
     {
       int offset = 0;
       uint32_t length_info = strlen(this->info);
-      memcpy(outbuffer + offset, &length_info, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_info);
       offset += 4;
       memcpy(outbuffer + offset, this->info, length_info);
       offset += length_info;
       uint32_t length_collision1_name = strlen(this->collision1_name);
-      memcpy(outbuffer + offset, &length_collision1_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_collision1_name);
       offset += 4;
       memcpy(outbuffer + offset, this->collision1_name, length_collision1_name);
       offset += length_collision1_name;
       uint32_t length_collision2_name = strlen(this->collision2_name);
-      memcpy(outbuffer + offset, &length_collision2_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_collision2_name);
       offset += 4;
       memcpy(outbuffer + offset, this->collision2_name, length_collision2_name);
       offset += length_collision2_name;
@@ -114,7 +122,7 @@ namespace gazebo_msgs
     {
       int offset = 0;
       uint32_t length_info;
-      memcpy(&length_info, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_info, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_info; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -123,7 +131,7 @@ namespace gazebo_msgs
       this->info = (char *)(inbuffer + offset-1);
       offset += length_info;
       uint32_t length_collision1_name;
-      memcpy(&length_collision1_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_collision1_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_collision1_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -132,7 +140,7 @@ namespace gazebo_msgs
       this->collision1_name = (char *)(inbuffer + offset-1);
       offset += length_collision1_name;
       uint32_t length_collision2_name;
-      memcpy(&length_collision2_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_collision2_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_collision2_name; ++k){
           inbuffer[k-1]=inbuffer[k];

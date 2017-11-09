@@ -16,17 +16,24 @@ namespace visualization_msgs
   class InteractiveMarker : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::Pose pose;
-      const char* name;
-      const char* description;
-      float scale;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::Pose _pose_type;
+      _pose_type pose;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef const char* _description_type;
+      _description_type description;
+      typedef float _scale_type;
+      _scale_type scale;
       uint32_t menu_entries_length;
-      visualization_msgs::MenuEntry st_menu_entries;
-      visualization_msgs::MenuEntry * menu_entries;
+      typedef visualization_msgs::MenuEntry _menu_entries_type;
+      _menu_entries_type st_menu_entries;
+      _menu_entries_type * menu_entries;
       uint32_t controls_length;
-      visualization_msgs::InteractiveMarkerControl st_controls;
-      visualization_msgs::InteractiveMarkerControl * controls;
+      typedef visualization_msgs::InteractiveMarkerControl _controls_type;
+      _controls_type st_controls;
+      _controls_type * controls;
 
     InteractiveMarker():
       header(),
@@ -45,12 +52,12 @@ namespace visualization_msgs
       offset += this->header.serialize(outbuffer + offset);
       offset += this->pose.serialize(outbuffer + offset);
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
       uint32_t length_description = strlen(this->description);
-      memcpy(outbuffer + offset, &length_description, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_description);
       offset += 4;
       memcpy(outbuffer + offset, this->description, length_description);
       offset += length_description;
@@ -89,7 +96,7 @@ namespace visualization_msgs
       offset += this->header.deserialize(inbuffer + offset);
       offset += this->pose.deserialize(inbuffer + offset);
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -98,7 +105,7 @@ namespace visualization_msgs
       this->name = (char *)(inbuffer + offset-1);
       offset += length_name;
       uint32_t length_description;
-      memcpy(&length_description, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_description, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_description; ++k){
           inbuffer[k-1]=inbuffer[k];

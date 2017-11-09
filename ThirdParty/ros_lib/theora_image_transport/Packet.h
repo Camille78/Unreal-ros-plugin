@@ -13,14 +13,20 @@ namespace theora_image_transport
   class Packet : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       uint32_t data_length;
-      uint8_t st_data;
-      uint8_t * data;
-      int32_t b_o_s;
-      int32_t e_o_s;
-      int64_t granulepos;
-      int64_t packetno;
+      typedef uint8_t _data_type;
+      _data_type st_data;
+      _data_type * data;
+      typedef int32_t _b_o_s_type;
+      _b_o_s_type b_o_s;
+      typedef int32_t _e_o_s_type;
+      _e_o_s_type e_o_s;
+      typedef int64_t _granulepos_type;
+      _granulepos_type granulepos;
+      typedef int64_t _packetno_type;
+      _packetno_type packetno;
 
     Packet():
       header(),

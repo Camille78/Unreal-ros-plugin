@@ -13,14 +13,20 @@ namespace map_msgs
   class OccupancyGridUpdate : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      int32_t x;
-      int32_t y;
-      uint32_t width;
-      uint32_t height;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef int32_t _x_type;
+      _x_type x;
+      typedef int32_t _y_type;
+      _y_type y;
+      typedef uint32_t _width_type;
+      _width_type width;
+      typedef uint32_t _height_type;
+      _height_type height;
       uint32_t data_length;
-      int8_t st_data;
-      int8_t * data;
+      typedef int8_t _data_type;
+      _data_type st_data;
+      _data_type * data;
 
     OccupancyGridUpdate():
       header(),

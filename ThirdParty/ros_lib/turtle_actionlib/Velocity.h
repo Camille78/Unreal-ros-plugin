@@ -12,8 +12,10 @@ namespace turtle_actionlib
   class Velocity : public ros::Msg
   {
     public:
-      float linear;
-      float angular;
+      typedef float _linear_type;
+      _linear_type linear;
+      typedef float _angular_type;
+      _angular_type angular;
 
     Velocity():
       linear(0),

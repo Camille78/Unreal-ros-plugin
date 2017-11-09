@@ -16,23 +16,36 @@ namespace visualization_msgs
   class ImageMarker : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      const char* ns;
-      int32_t id;
-      int32_t type;
-      int32_t action;
-      geometry_msgs::Point position;
-      float scale;
-      std_msgs::ColorRGBA outline_color;
-      uint8_t filled;
-      std_msgs::ColorRGBA fill_color;
-      ros::Duration lifetime;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef const char* _ns_type;
+      _ns_type ns;
+      typedef int32_t _id_type;
+      _id_type id;
+      typedef int32_t _type_type;
+      _type_type type;
+      typedef int32_t _action_type;
+      _action_type action;
+      typedef geometry_msgs::Point _position_type;
+      _position_type position;
+      typedef float _scale_type;
+      _scale_type scale;
+      typedef std_msgs::ColorRGBA _outline_color_type;
+      _outline_color_type outline_color;
+      typedef uint8_t _filled_type;
+      _filled_type filled;
+      typedef std_msgs::ColorRGBA _fill_color_type;
+      _fill_color_type fill_color;
+      typedef ros::Duration _lifetime_type;
+      _lifetime_type lifetime;
       uint32_t points_length;
-      geometry_msgs::Point st_points;
-      geometry_msgs::Point * points;
+      typedef geometry_msgs::Point _points_type;
+      _points_type st_points;
+      _points_type * points;
       uint32_t outline_colors_length;
-      std_msgs::ColorRGBA st_outline_colors;
-      std_msgs::ColorRGBA * outline_colors;
+      typedef std_msgs::ColorRGBA _outline_colors_type;
+      _outline_colors_type st_outline_colors;
+      _outline_colors_type * outline_colors;
       enum { CIRCLE = 0 };
       enum { LINE_STRIP = 1 };
       enum { LINE_LIST = 2 };
@@ -63,7 +76,7 @@ namespace visualization_msgs
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
       uint32_t length_ns = strlen(this->ns);
-      memcpy(outbuffer + offset, &length_ns, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_ns);
       offset += 4;
       memcpy(outbuffer + offset, this->ns, length_ns);
       offset += length_ns;
@@ -146,7 +159,7 @@ namespace visualization_msgs
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
       uint32_t length_ns;
-      memcpy(&length_ns, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_ns, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_ns; ++k){
           inbuffer[k-1]=inbuffer[k];

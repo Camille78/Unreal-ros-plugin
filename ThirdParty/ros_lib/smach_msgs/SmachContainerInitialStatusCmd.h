@@ -12,11 +12,14 @@ namespace smach_msgs
   class SmachContainerInitialStatusCmd : public ros::Msg
   {
     public:
-      const char* path;
+      typedef const char* _path_type;
+      _path_type path;
       uint32_t initial_states_length;
-      char* st_initial_states;
-      char* * initial_states;
-      const char* local_data;
+      typedef char* _initial_states_type;
+      _initial_states_type st_initial_states;
+      _initial_states_type * initial_states;
+      typedef const char* _local_data_type;
+      _local_data_type local_data;
 
     SmachContainerInitialStatusCmd():
       path(""),
@@ -29,7 +32,7 @@ namespace smach_msgs
     {
       int offset = 0;
       uint32_t length_path = strlen(this->path);
-      memcpy(outbuffer + offset, &length_path, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_path);
       offset += 4;
       memcpy(outbuffer + offset, this->path, length_path);
       offset += length_path;
@@ -40,13 +43,13 @@ namespace smach_msgs
       offset += sizeof(this->initial_states_length);
       for( uint32_t i = 0; i < initial_states_length; i++){
       uint32_t length_initial_statesi = strlen(this->initial_states[i]);
-      memcpy(outbuffer + offset, &length_initial_statesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_initial_statesi);
       offset += 4;
       memcpy(outbuffer + offset, this->initial_states[i], length_initial_statesi);
       offset += length_initial_statesi;
       }
       uint32_t length_local_data = strlen(this->local_data);
-      memcpy(outbuffer + offset, &length_local_data, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_local_data);
       offset += 4;
       memcpy(outbuffer + offset, this->local_data, length_local_data);
       offset += length_local_data;
@@ -57,7 +60,7 @@ namespace smach_msgs
     {
       int offset = 0;
       uint32_t length_path;
-      memcpy(&length_path, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_path, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_path; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -75,7 +78,7 @@ namespace smach_msgs
       initial_states_length = initial_states_lengthT;
       for( uint32_t i = 0; i < initial_states_length; i++){
       uint32_t length_st_initial_states;
-      memcpy(&length_st_initial_states, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_initial_states, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_initial_states; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -86,7 +89,7 @@ namespace smach_msgs
         memcpy( &(this->initial_states[i]), &(this->st_initial_states), sizeof(char*));
       }
       uint32_t length_local_data;
-      memcpy(&length_local_data, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_local_data, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_local_data; ++k){
           inbuffer[k-1]=inbuffer[k];

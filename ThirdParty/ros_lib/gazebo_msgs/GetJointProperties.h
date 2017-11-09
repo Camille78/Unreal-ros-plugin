@@ -13,7 +13,8 @@ static const char GETJOINTPROPERTIES[] = "gazebo_msgs/GetJointProperties";
   class GetJointPropertiesRequest : public ros::Msg
   {
     public:
-      const char* joint_name;
+      typedef const char* _joint_name_type;
+      _joint_name_type joint_name;
 
     GetJointPropertiesRequest():
       joint_name("")
@@ -24,7 +25,7 @@ static const char GETJOINTPROPERTIES[] = "gazebo_msgs/GetJointProperties";
     {
       int offset = 0;
       uint32_t length_joint_name = strlen(this->joint_name);
-      memcpy(outbuffer + offset, &length_joint_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_joint_name);
       offset += 4;
       memcpy(outbuffer + offset, this->joint_name, length_joint_name);
       offset += length_joint_name;
@@ -35,7 +36,7 @@ static const char GETJOINTPROPERTIES[] = "gazebo_msgs/GetJointProperties";
     {
       int offset = 0;
       uint32_t length_joint_name;
-      memcpy(&length_joint_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_joint_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_joint_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -54,18 +55,24 @@ static const char GETJOINTPROPERTIES[] = "gazebo_msgs/GetJointProperties";
   class GetJointPropertiesResponse : public ros::Msg
   {
     public:
-      uint8_t type;
+      typedef uint8_t _type_type;
+      _type_type type;
       uint32_t damping_length;
-      double st_damping;
-      double * damping;
+      typedef double _damping_type;
+      _damping_type st_damping;
+      _damping_type * damping;
       uint32_t position_length;
-      double st_position;
-      double * position;
+      typedef double _position_type;
+      _position_type st_position;
+      _position_type * position;
       uint32_t rate_length;
-      double st_rate;
-      double * rate;
-      bool success;
-      const char* status_message;
+      typedef double _rate_type;
+      _rate_type st_rate;
+      _rate_type * rate;
+      typedef bool _success_type;
+      _success_type success;
+      typedef const char* _status_message_type;
+      _status_message_type status_message;
       enum { REVOLUTE =  0                 };
       enum { CONTINUOUS =  1                 };
       enum { PRISMATIC =  2                 };
@@ -159,7 +166,7 @@ static const char GETJOINTPROPERTIES[] = "gazebo_msgs/GetJointProperties";
       *(outbuffer + offset + 0) = (u_success.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->success);
       uint32_t length_status_message = strlen(this->status_message);
-      memcpy(outbuffer + offset, &length_status_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status_message);
       offset += 4;
       memcpy(outbuffer + offset, this->status_message, length_status_message);
       offset += length_status_message;
@@ -258,7 +265,7 @@ static const char GETJOINTPROPERTIES[] = "gazebo_msgs/GetJointProperties";
       this->success = u_success.real;
       offset += sizeof(this->success);
       uint32_t length_status_message;
-      memcpy(&length_status_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status_message; ++k){
           inbuffer[k-1]=inbuffer[k];

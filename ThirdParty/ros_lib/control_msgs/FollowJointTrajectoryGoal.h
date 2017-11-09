@@ -15,14 +15,18 @@ namespace control_msgs
   class FollowJointTrajectoryGoal : public ros::Msg
   {
     public:
-      trajectory_msgs::JointTrajectory trajectory;
+      typedef trajectory_msgs::JointTrajectory _trajectory_type;
+      _trajectory_type trajectory;
       uint32_t path_tolerance_length;
-      control_msgs::JointTolerance st_path_tolerance;
-      control_msgs::JointTolerance * path_tolerance;
+      typedef control_msgs::JointTolerance _path_tolerance_type;
+      _path_tolerance_type st_path_tolerance;
+      _path_tolerance_type * path_tolerance;
       uint32_t goal_tolerance_length;
-      control_msgs::JointTolerance st_goal_tolerance;
-      control_msgs::JointTolerance * goal_tolerance;
-      ros::Duration goal_time_tolerance;
+      typedef control_msgs::JointTolerance _goal_tolerance_type;
+      _goal_tolerance_type st_goal_tolerance;
+      _goal_tolerance_type * goal_tolerance;
+      typedef ros::Duration _goal_time_tolerance_type;
+      _goal_time_tolerance_type goal_time_tolerance;
 
     FollowJointTrajectoryGoal():
       trajectory(),
