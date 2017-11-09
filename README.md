@@ -44,6 +44,7 @@ Perform the following steps to test the components:
 - Initialize Rosserial with the IP adress of your RosMaster in your actor blueprint thanks to the function **InitROS**
 - You can use the example functions **PublishTransformMsg**, **PublishCartNavStateMsg**, **OnNewYawCommand**, **OnNewVelocityCommand** or create your own functions in your actor's blueprint.
 
+You can also find a quick procedure to create your own ROS messages in the file [AddCustomMsg.txt](https://github.com/Camille78/Unreal-ros-plugin/blob/master/AddCustomMsg.txt). 
 
 ## Example
 
@@ -59,7 +60,7 @@ If you need more help, you can take a look at the repositories [SimpleROSProject
 - Play the scene in Unreal
 - The cube should move thanks to speed and yaw commands sent from the ROS node "thrusterControllerNode" (Note don't panic if the cube movement is awkward, the PID controller in the trhusterControllerNode is not correctly set)
 
-- Everything you should pay attention for is located in the ROScube blueprint, in the files ROSSerialClientComponent.cpp and its header. You can also find a quick procedure to create your own ROS messages in the file "AddCustomMsg" located in the Unreal project. 
+- Everything you should pay attention for is located in the ROScube blueprint, in the files ROSSerialClientComponent.cpp and its header. You can also find a quick procedure to create your own ROS messages in the file [AddCustomMsg.txt](https://github.com/Camille78/Unreal-ros-plugin/blob/master/AddCustomMsg.txt). 
 
 
 
